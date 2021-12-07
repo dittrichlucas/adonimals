@@ -1,0 +1,25 @@
+{
+    "name": "adonimals",
+    "version": "0.1.0",
+    "private": true,
+    "description": "A simple social network for pet adoption developed with react, adonimals-ui, next.js, typescript, lerna and some other things.",
+    "keywords": [
+        "adonimals-ui",
+        "typescript",
+        "react",
+        "lerna",
+        "next.js"
+    ],
+    "homepage": "https://github.com/dittrichlucas/adonimals#readme",
+    "author": "Lucas Dittrich <ld.dittrich@gmail.com>",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "start": "lerna exec --stream  -- yarn start",
+        "start:client": "cd packages/adonimals-client && yarn dev"
+    },
+    "devDependencies": {
+        "lerna": "4.0.0"
+    }
+}
