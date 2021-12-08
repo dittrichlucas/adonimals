@@ -1,4 +1,6 @@
 import { Avatar, Box, Button, Text } from 'adonimals-ui'
+import { formatDistance } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { usePosts } from '../contexts/posts'
 
 export const ViewPosts = () => {
@@ -19,9 +21,15 @@ export const ViewPosts = () => {
                 >
                     <Box element='div' display='flex' alignItems='center'>
                         <Avatar label={ post.user.name } src={ post.user.photo } />
-                        <Box px='spacing-xxs' display='flex' flexDirection='column' alignItems='center'>
+                        <Box px='spacing-xxs' display='flex' flexDirection='column' alignItems='flex-start'>
                             <Text mb='spacing-xxxs' color='grayscalle.50' variant='medium'>{ post.user.name }</Text>
-                            <Text variant='small' element='span'>há 2 horas</Text>
+                            <Text variant='small' element='span'>
+                                { formatDistance(
+                                    new Date(post.createdAt), 
+                                    new Date(), 
+                                    { locale: ptBR, addSuffix: true }) 
+                                }
+                            </Text>
                         </Box>
                     </Box>
                     <Box element='div'>

@@ -4,6 +4,7 @@ import { AddPost } from '../components/AddPost'
 import { Header } from '../components/Header'
 import { ViewPosts } from '../components/ViewPosts'
 import { PostsProvider } from '../contexts/posts'
+import { UserProvider } from '../contexts/user'
 import { Post, User } from '../types/entities'
 
 type Props = {
@@ -13,12 +14,14 @@ type Props = {
 
 const Home: NextPage<Props> = ({ user, posts }) => {
     return (
-        <PostsProvider posts={posts}>
-            <Box maxWidth='900px' m='0 auto'>
-                <Header {...user}></Header>
-                <AddPost />
-                <ViewPosts />
-            </Box>
+        <PostsProvider posts={ posts }>
+            <UserProvider user={ user }>
+                <Box maxWidth='900px' m='0 auto'>
+                    <Header></Header>
+                    <AddPost />
+                    <ViewPosts />
+                </Box>
+            </UserProvider>
         </PostsProvider>
     )
 }
