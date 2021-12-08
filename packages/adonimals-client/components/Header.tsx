@@ -1,7 +1,9 @@
 import { Avatar, Box, Title } from 'adonimals-ui'
-import { User } from '../types/entities'
+import { useUser } from '../contexts/user'
 
-export const Header = (user: User) => {
+export const Header = () => {
+    const { user } = useUser()
+    
     return (
         <Box
             element='header'
@@ -11,7 +13,7 @@ export const Header = (user: User) => {
             alignItems='center'
         >
             <Title variant='heading3'>Adonimals</Title>
-            <Avatar src={ user.photo } />
+            <Avatar src={ user?.photo } />
         </Box>
     )
 }

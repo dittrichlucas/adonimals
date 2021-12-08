@@ -1,21 +1,17 @@
 export type User = {
-    id: string
+    id: number
     name: string
     photo: string
 }
 
 export type Post = {
-    id: string,
-    user: {
-        id: string,
-        name: string
-        photo: string
-    },
+    id: number,
+    user: User,
     content: {
         text: string,
         images: string[]
     },
     like: boolean,
-    createdAt: string,
-    updatedAt: string
+    createdAt: Date,
+    updatedAt: Date
 }
