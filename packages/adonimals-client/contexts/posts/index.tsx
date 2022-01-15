@@ -6,24 +6,28 @@ import {
 } from 'react'
 import { Post } from '../../types/entities'
 
-const PostsContext = createContext<{
-    posts: Post[], likePost: (id: string) => void, addPost: (post: Post) => void, deletePost: (id: string) => void
-}>
-    ({
-        posts: [],
-        likePost: () => null,
-        deletePost: () => null,
-        addPost: () => null
-    })
+type PostContextType = {
+    posts: Post[],
+    likePost: (id: number) => void,
+    addPost: (post: Post) => void,
+    deletePost: (id: number) => void
+}
 
-export const PostsProvider = ({ children, posts: rawPosts }: PropsWithChildren<{ posts: Post[] }>) => {
+const PostsContext = createContext<PostContextType> ({
+    posts: [],
+    likePost: () => null,
+    deletePost: () => null,
+    addPost: () => null
+})
+
+export const PostsProvider = ({ children, posts: rawPosts }: PropsWithChildren<Pick<PostContextType, 'posts'>>) => {
     const [posts, setPosts] = useState(rawPosts)
 
-    const likePost = (id: string) => {
+    const likePost = (id: number) => {
         setPosts((previous) => previous.map(post => id === post.id ? ({ ...post, like: !post.like }) : post))
     }
 
-    const deletePost = (id: string) => {
+    const deletePost = (id: number) => {
         setPosts((previous) => previous.filter(post => id !== post.id))
     }
 
